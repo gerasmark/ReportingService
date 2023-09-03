@@ -20,7 +20,7 @@ class Sensor(models.Model):
 
 class SensorReading(models.Model):
     Id = models.AutoField(primary_key=True)
-    sensorId = models.ForeignKey(Sensor, on_delete=models.CASCADE)
+    sensorId = models.CharField(max_length=50)
     readingType = models.CharField(max_length=50)
     readingValue = models.DecimalField(max_digits=10, decimal_places=2)
     readingDate = models.DateField()
