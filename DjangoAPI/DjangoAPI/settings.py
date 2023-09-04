@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+DB_USER = os.environ.get("DB_USER")
+DB_PASSWORD = os.environ.get("DB_PASSWORD")
+DB = os.environ.get("Database")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -83,7 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            "host": "mongodb+srv://intrasoft:intrasoft@cluster0.c8m3z3m.mongodb.net/Database?retryWrites=true&w=majority",
+            "host": "mongodb+srv://" +DB_USER+ ":" + DB_PASSWORD + "@cluster0.c8m3z3m.mongodb.net/Database?retryWrites=true&w=majority",
             "name": "Database",
             "authMechanism": "SCRAM-SHA-1"
         }
