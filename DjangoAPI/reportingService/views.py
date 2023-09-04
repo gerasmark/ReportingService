@@ -29,8 +29,12 @@ def sensorReadings(request):
         if time:
             sensorReadings = sensorReadings.filter(time=time)
         # serializer = SensorSerializer(sensor, many=True)
-        serializer = SensorReadingSerializer(sensorReadings, many=True)
         # return JsonResponse(serializer.data, status=200, safe=False)
+        page_size = 10
+        page_number = 1
+        paginator = Paginator(sensorReadings, page_size)
+        page = paginator.get_page(page_number)
+        serializer = SensorReadingSerializer(page, many=True)
         return JsonResponse(serializer.data, status=200, safe=False)
 
     elif request.method == 'GET':
@@ -42,3 +46,17 @@ def sensorReadings(request):
         page = paginator.get_page(page_number)
         serializer = SensorReadingSerializer(page, many=True)
         return JsonResponse(serializer.data, status=200, safe=False)
+@csrf_exempt
+def sensorMetrics(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        sensorId = body['sensorId']
+        sensorReadings = SensorReading.objects.all()
+        sensorReadings = sensorReadings.filter(sensorId=sensorId)
+        sensor_values = list(sensorReadings.values_list('readingValue', flat=True))
+        sensor_values_list = list(sensor_values)
+        mean_value = round(sum(sensor_values_list)/len(sensor_values_list))
+        min_value = min(sensor_values_list)
+        max_value = max(sensor_values_list)
+        return JsonResponse(mean_value, status=200, safe=False)
