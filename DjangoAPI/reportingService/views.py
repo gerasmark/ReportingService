@@ -23,10 +23,14 @@ def sensorReadings(request):
             sensor = sensor.filter(type=type)
         if location:
             sensor = sensor.filter(location=location)
-        # sensorReadings = sensorReadings.filter(sensorId__in=sensor)    
-        # if time:
-        # query = query.filter(time=time)
-        serializer = SensorSerializer(sensor, many=True)
+        sensor_ids = list(sensor.values_list('sensorId', flat=True))
+        sensor_ids_list = list(sensor_ids)
+        sensorReadings = sensorReadings.filter(sensorId__in=sensor_ids_list)    
+        if time:
+            sensorReadings = sensorReadings.filter(time=time)
+        # serializer = SensorSerializer(sensor, many=True)
+        serializer = SensorReadingSerializer(sensorReadings, many=True)
+        # return JsonResponse(serializer.data, status=200, safe=False)
         return JsonResponse(serializer.data, status=200, safe=False)
 
     elif request.method == 'GET':
