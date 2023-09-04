@@ -23,7 +23,7 @@ class Command(BaseCommand):
                 location=fake.city()
             )
             sensor_data.append(sensor)
-        # Sensor.objects.bulk_create(sensor_data)
+        Sensor.objects.bulk_create(sensor_data)
         sensor_reading_data = []
         for sensor in Sensor.objects.all():
             for _ in range(5):  
@@ -36,8 +36,6 @@ class Command(BaseCommand):
                     description=fake.sentence(),
                     time=fake.time()
                 )
-                print(sensor_reading.readingDate)
-                print(sensor_reading.time)
                 sensor_reading_data.append(sensor_reading)
-        # SensorReading.objects.bulk_create(sensor_reading_data)
+        SensorReading.objects.bulk_create(sensor_reading_data)
 
