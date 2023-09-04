@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-
+from django.core.paginator import Paginator
 from reportingService.models import Sensor, SensorReading
 from reportingService.serializers import SensorSerializer, SensorReadingSerializer
 
@@ -23,4 +23,9 @@ def sensorReadings(request):
     if request.method == 'GET':
         sensorReadings = SensorReading.objects.all()
         serializer = SensorReadingSerializer(sensorReadings, many=True)
+        page_size = 10
+        page_number = 1
+        paginator = Paginator(sensorReadings, page_size)
+        page = paginator.get_page(page_number)
+        serializer = SensorReadingSerializer(page, many=True)
         return JsonResponse(serializer.data, status=200, safe=False)
