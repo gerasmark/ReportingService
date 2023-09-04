@@ -25,10 +25,10 @@ class SensorReading(models.Model):
         ('acoustic', 'Acoustic'),
     ]
 
-    Id = models.CharField(max_length=50, primary_key=True)
+    Id = models.CharField(max_length=50, primary_key=True) #AutoField(primary_key=True, serialize=False) #
     sensorId = models.CharField(max_length=50)
     readingType = models.CharField(max_length=20, choices=SENSOR_TYPES)
-    readingValue = models.DecimalField(max_digits=10, decimal_places=2)
+    readingValue = models.FloatField() #DecimalField(max_digits=10, decimal_places=2)
     readingDate = models.CharField(max_length=10)  #DateField()
     description = models.TextField()
     time = models.CharField(max_length=9)  #TimeField()

@@ -27,11 +27,17 @@ class Command(BaseCommand):
         sensor_reading_data = []
         for sensor in Sensor.objects.all():
             for _ in range(5):  
+                if(sensor.type == 'temperature'):
+                    number=fake.pydecimal(min_value=0, max_value=1000, right_digits=2)
+                elif(sensor.type == 'humidity'):
+                    number=fake.pydecimal(min_value=0, max_value=100, right_digits=2)
+                elif(sensor.type == 'acoustic'):
+                    number=fake.pyint(min_value=5000, max_value=20000)
                 sensor_reading = SensorReading(
                     Id = fake.unique.random_int(min=10000, max=99999),
                     sensorId=sensor.sensorId,
                     readingType=sensor.type,
-                    readingValue=fake.pydecimal(min_value=0, max_value=100, right_digits=2),
+                    readingValue=number, #fake.pydecimal(min_value=0, max_value=100, right_digits=2),
                     readingDate=fake.date(),  
                     description=fake.sentence(),
                     time=fake.time()
