@@ -56,7 +56,14 @@ def sensorMetrics(request):
         sensorReadings = sensorReadings.filter(sensorId=sensorId)
         sensor_values = list(sensorReadings.values_list('readingValue', flat=True))
         sensor_values_list = list(sensor_values)
-        mean_value = round(sum(sensor_values_list)/len(sensor_values_list))
+        mean_value = round(sum(sensor_values_list)/len(sensor_values_list), 2)
         min_value = min(sensor_values_list)
         max_value = max(sensor_values_list)
-        return JsonResponse(mean_value, status=200, safe=False)
+        ascending_sensor_values_list = sorted(sensor_values_list,reverse=True)
+        descending_sensor_values_list = sorted(sensor_values_list)
+        ascending_sensor_values_list = ascending_sensor_values_list[:10]
+        descending_sensor_values_list = descending_sensor_values_list[:10]
+        range = round(max_value - min_value, 2)
+        result = {'mean': mean_value,'min': min_value,'max': max_value, 'range': range, '10 maximum recorded values': ascending_sensor_values_list, '10 minimum recorded values': descending_sensor_values_list}
+
+        return JsonResponse(result, status=200, safe=False)

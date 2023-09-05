@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
         sensor_data = []
         sensor_types = ['temperature', 'humidity', 'acoustic']
-        for _ in range(50):  
+        for _ in range(100):  
             sensor = Sensor(
                 sensorId=fake.unique.random_int(min=10000, max=99999), 
                 type=random.choice(sensor_types),
@@ -26,7 +26,7 @@ class Command(BaseCommand):
         Sensor.objects.bulk_create(sensor_data)
         sensor_reading_data = []
         for sensor in Sensor.objects.all():
-            for _ in range(5):  
+            for _ in range(20):  
                 if(sensor.type == 'temperature'):
                     number=fake.pydecimal(min_value=0, max_value=1000, right_digits=2)
                 elif(sensor.type == 'humidity'):
