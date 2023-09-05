@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "dc0fffc1-bab4-4a29-a6ad-70c43599ac0c",
+		"name": "Sensor Readings",
+		"description": "This collection handles simple information retrieval requests for sensor readings of the following 3 types of sensors:  \n• Temperature Sensor  \n• Humidity Sensor  \n• Acoustic sensor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25404223",
+		"_collection_link": "https://universal-moon-727725.postman.co/workspace/Reporting-Service-APIs~af2fe094-7661-48a8-b4c2-0ba21dcec6aa/collection/25404223-dc0fffc1-bab4-4a29-a6ad-70c43599ac0c?action=share&source=collection_link&creator=25404223"
+	},
+	"item": [
+		{
+			"name": "allSensorReadings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/sensorReadings/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"sensorReadings",
+						""
+					]
+				},
+				"description": "This endpoint is used to get all sensor readings."
+			},
+			"response": [
+				{
+					"name": "Status 200 OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/sensorReadings/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sensorReadings",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 04 Sep 2023 13:11:52 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1935"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"Id\": \"34315\",\n        \"sensorId\": \"16863\",\n        \"readingType\": \"acoustic\",\n        \"readingValue\": 6163,\n        \"readingDate\": \"2001-08-21\",\n        \"description\": \"Measure job financial set PM center.\",\n        \"time\": \"03:14:45\"\n    },\n    {\n        \"Id\": \"67809\",\n        \"sensorId\": \"16863\",\n        \"readingType\": \"acoustic\",\n        \"readingValue\": 7084,\n        \"readingDate\": \"2020-12-07\",\n        \"description\": \"Surface break manager yard head buy window.\",\n        \"time\": \"16:11:42\"\n    },\n    {\n        \"Id\": \"45048\",\n        \"sensorId\": \"16863\",\n        \"readingType\": \"acoustic\",\n        \"readingValue\": 9169,\n        \"readingDate\": \"2009-01-26\",\n        \"description\": \"Begin across require hear late hold condition.\",\n        \"time\": \"23:08:08\"\n    },\n    {\n        \"Id\": \"98500\",\n        \"sensorId\": \"16863\",\n        \"readingType\": \"acoustic\",\n        \"readingValue\": 15627,\n        \"readingDate\": \"1992-08-13\",\n        \"description\": \"Return sense staff push during.\",\n        \"time\": \"16:44:40\"\n    },\n    {\n        \"Id\": \"59492\",\n        \"sensorId\": \"16863\",\n        \"readingType\": \"acoustic\",\n        \"readingValue\": 11093,\n        \"readingDate\": \"1980-12-15\",\n        \"description\": \"Year hand they should movement.\",\n        \"time\": \"19:15:46\"\n    },\n    {\n        \"Id\": \"72230\",\n        \"sensorId\": \"19158\",\n        \"readingType\": \"humidity\",\n        \"readingValue\": 87.03,\n        \"readingDate\": \"1985-05-05\",\n        \"description\": \"Director while gas south particularly wide about letter.\",\n        \"time\": \"14:12:02\"\n    },\n    {\n        \"Id\": \"12995\",\n        \"sensorId\": \"19158\",\n        \"readingType\": \"humidity\",\n        \"readingValue\": 85.03,\n        \"readingDate\": \"1987-08-30\",\n        \"description\": \"Sound consumer consumer show.\",\n        \"time\": \"17:53:03\"\n    },\n    {\n        \"Id\": \"32685\",\n        \"sensorId\": \"19158\",\n        \"readingType\": \"humidity\",\n        \"readingValue\": 30.82,\n        \"readingDate\": \"2013-11-05\",\n        \"description\": \"Situation natural argue none employee.\",\n        \"time\": \"12:26:13\"\n    },\n    {\n        \"Id\": \"19838\",\n        \"sensorId\": \"19158\",\n        \"readingType\": \"humidity\",\n        \"readingValue\": 88.52,\n        \"readingDate\": \"1985-10-20\",\n        \"description\": \"Yourself few begin hand who everyone.\",\n        \"time\": \"20:50:57\"\n    },\n    {\n        \"Id\": \"91152\",\n        \"sensorId\": \"19158\",\n        \"readingType\": \"humidity\",\n        \"readingValue\": 58.87,\n        \"readingDate\": \"1972-09-28\",\n        \"description\": \"Dream less into bill.\",\n        \"time\": \"12:01:17\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "SensorReadings(sensor type, sensor location, time)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"temperature\",\r\n    \"location\": \"West Whitneyfurt\",\r\n    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/sensorReadings/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"sensorReadings",
+						""
+					]
+				},
+				"description": "This endpoint is used to filter the database(filter parametres: sensor type, sensor location, time) and find the sensor readings."
+			},
+			"response": [
+				{
+					"name": "Status 200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"humidity\",\r\n    \"location\": \"Taylorton\",\r\n    \"time\": \"14:12:02\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sensorReadings/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sensorReadings",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 04 Sep 2023 13:10:45 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "212"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "origin"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"Id\": \"72230\",\n        \"sensorId\": \"19158\",\n        \"readingType\": \"humidity\",\n        \"readingValue\": 87.03,\n        \"readingDate\": \"1985-05-05\",\n        \"description\": \"Director while gas south particularly wide about letter.\",\n        \"time\": \"14:12:02\"\n    }\n]"
+				},
+				{
+					"name": "Status 400(Bad Request)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"temperature\",\r\n    \"location\": \"West Whitneyfurt\",\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sensorReadings/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sensorReadings",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 05 Sep 2023 08:04:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "97"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_message\": \"Expecting property name enclosed in double quotes: line 5 column 1 (char 74)\"\n}"
+				}
+			]
+		},
+		{
+			"name": "sensorMetrics",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sensorId\": \"73819\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/sensorMetrics/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"sensorMetrics",
+						""
+					]
+				},
+				"description": "This endpoint is used to get some important sensor metrics like mean, max value, min value, range, and the top and bottom ten values."
+			},
+			"response": [
+				{
+					"name": "status 200 OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sensorId\": \"73819\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sensorMetrics/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sensorMetrics",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 05 Sep 2023 07:57:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "275"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mean\": 401.02,\n    \"min\": 14.38,\n    \"max\": 939.6,\n    \"range\": 925.22,\n    \"10 maximum recorded values\": [\n        939.6,\n        911,\n        889.67,\n        807.6,\n        696.82,\n        647.43,\n        620.16,\n        528.1,\n        429.19,\n        370.39\n    ],\n    \"10 minimum recorded values\": [\n        14.38,\n        14.81,\n        21.16,\n        50.43,\n        63.53,\n        95.65,\n        217.12,\n        220.61,\n        240.29,\n        242.55\n    ]\n}"
+				},
+				{
+					"name": "Status 400(Bad Request)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/sensorMetrics/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"sensorMetrics",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 05 Sep 2023 08:05:13 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.11.5"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error_message\": \"'sensorId'\"\n}"
+				}
+			]
+		}
+	]
+}
