@@ -19,3 +19,14 @@ Description: Easily filter data based on specific criteria, including sensor typ
 Endpoint: /sensorMetrics/
 
 Description: Obtain vital metrics for your sensor data, including mean value, minimum value, maximum value, range of values, and the top ten recorded values. This feature simplifies data analysis and decision-making.
+
+## Quick Start
+To get this project up and running locally on your computer follow the following steps.
+1)Set up a python virtual environment
+2)Run the following commands
+```
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createdata
+python manage.py runserver
+```
