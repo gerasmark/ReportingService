@@ -7,16 +7,24 @@ from datetime import datetime, timedelta
 # Create your tests here.
 
 class SensorReadingViewTestCase(SimpleTestCase):
-    def test_queries(self):
+    def test_sensorReadings(self):
         client = APIClient()
         data = {
              "type": "humidity",
             "location": "Ayalafurt",
-            "time": "08:56:32"
+            "time": ""
         }
+        response = client.post('/sensorReadings/', data, format='json')
+        print("response")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        response = client.post('http://127.0.0.1:8000/sensorReadings/', data, format='json')
-        print(response.json())
+    def test_sensorMetrics(self):
+        client = APIClient()
+        data = {
+             "sensorId" : "16863"
+        }
+        response = client.post('/sensorMetrics/', data, format='json')
+        print("response")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test1(self):
