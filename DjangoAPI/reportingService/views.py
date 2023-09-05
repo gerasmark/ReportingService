@@ -72,7 +72,6 @@ def sensorMetrics(request):
             descending_sensor_values_list = descending_sensor_values_list[:10]
             range = round(max_value - min_value, 2)
             result = {'mean': mean_value,'min': min_value,'max': max_value, 'range': range, '10 maximum recorded values': ascending_sensor_values_list, '10 minimum recorded values': descending_sensor_values_list}
-
             return JsonResponse(result, status=200, safe=False)
     except Exception as e:
             return JsonResponse({'error_message': str(e)}, status=400, safe=False)
