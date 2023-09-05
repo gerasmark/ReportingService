@@ -4,13 +4,13 @@ Our web application is a comprehensive system designed to manage and retrieve se
 ## REST API Endpoints
 1)Retrieve All Sensor Readings
 
-Endpoint: sensorReadings/, Get Requet
+Endpoint: /sensorReadings/, Get Requet
 
 Description: Access all available sensor readings, providing a comprehensive view of your data.
 
 2)Filtered Data Retrieval
 
-Endpoint: /sensorReadings, Post Request
+Endpoint: /sensorReadings/, Post Request
 
 Description: Easily filter data based on specific criteria, including sensor type, location, and time, allowing you to retrieve relevant information tailored to your needs.
 
@@ -22,12 +22,14 @@ Description: Obtain vital metrics for your sensor data, including mean value, mi
 
 ## Quick Start
 To get this project up and running locally on your computer follow the following steps.
+1. Clone this repository
 
-1)Set up a python virtual environment
+2. Set up a python virtual environment
+3. Create a .env file with the DB_USER and DB_PASSWORD
 
-2)Run the following commands
+4. Run the following commands
 ```
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python manage.py migrate
 python manage.py createdata
 python manage.py runserver
