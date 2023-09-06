@@ -87,9 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            "host": "mongodb+srv://" + DB_USER + ":" + DB_PASSWORD + "@cluster0.c8m3z3m.mongodb.net/Database?retryWrites=true&w=majority",
+            "host": 'mongodb://yourusername:yourpassword@localhost:27017/?authMechanism=DEFAULT',
             "name": "Database",
-            "authMechanism": "SCRAM-SHA-1"
         }
     }
 }
