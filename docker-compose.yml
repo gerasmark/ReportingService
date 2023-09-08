@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  djangoapi:
+    build: .
+    container_name: djangoapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: yourusername
+      MONGO_INITDB_ROOT_PASSWORD: yourpassword
+    ports:
+      - "27017:27017"
