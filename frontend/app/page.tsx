@@ -1,14 +1,29 @@
-"use-client";
-import React from 'react';
-import Button from '@mui/material/Button';
-import Link from 'next/link';
+'use client'
+import { useState, useEffect} from 'react';
 
+function App() {
+	const [counter, setCounter] = useState(5);
+	const handleIncrease = () => {
+		setCounter((prev) => prev + 1);
+	};
 
-const HomePage = () => {
-  return (
-    <div>
-      
-    </div>
-  );
-  }
-export default HomePage;
+	const handleDecrease = () => {
+		setCounter((prev) => prev - 1);
+	};
+
+	console.log('Rendering!!!');
+
+	return (
+		<div>
+			<button onClick={handleDecrease}>
+				decrease
+			</button>
+			<span> {counter} </span>
+			<button onClick={handleIncrease}>
+				increase
+			</button>
+		</div>
+	);
+}
+
+export default App;

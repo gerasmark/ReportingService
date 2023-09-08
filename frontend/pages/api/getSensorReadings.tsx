@@ -1,13 +1,8 @@
 export default async function handler(req, res) {
-    const { message } = req.body;
   try {
     const response = 
-    await fetch('http://djangoapi:8000/sensorReadings/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ message })
+    await fetch('http://localhost:8000/sensorReadings/', {
+        method: 'GET'
       });
     const count = await response.json();
     res.status(200).json(count)
