@@ -5,30 +5,32 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import { useRouter } from 'next/router';
 
 const SensorReadingsPage = () => {
   const [type, setType] = useState('');
   const [location, setLocation] = useState('');
   const [time, setTime] = useState('');
   const [sensorReadings, setSensorReadings] = useState([]);
-  const [showAdditionalButton, setShowAdditionalButton] = useState(true);
 
   const handleFilterSubmit = async () => {
-    const response = await fetch('http://127.0.0.1:3000/api/postSensorReadings/', {
+    const response = await fetch('/api/postSensorReadings/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "type": "temperature",
-        "location": "Ayalafurt",
-        "time": ""
+        type: type,
+        location: location,
+        time: time,
     }),
     });
     if (response.ok) {
@@ -41,7 +43,26 @@ const SensorReadingsPage = () => {
 
   return (
       <div>
-        <h1>Sensor Readings</h1>
+        <AppBar>
+            <Toolbar>
+            <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+            Sensor App
+            </Typography>
+            <div>
+//             <Link href="/sensorReadings">
+//               <Button variant="contained" color="primary">
+//                 Sensor Readings
+//               </Button>
+//             </Link>
+//             <Link href="/sensorMetrics">
+//               <Button variant="contained" color="secondary">
+//                 Sensor Metrics
+//               </Button>
+//             </Link>
+//           </div>
+            </Toolbar>
+        </AppBar>
+        <main style={{ marginTop: '80px' }}></main>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <InputLabel>Sensor Type</InputLabel>
           <TextField
@@ -66,8 +87,22 @@ const SensorReadingsPage = () => {
         >
           Filter 
         </Button>
+        <Button>
+            {sensorReadings.length > 0? 'View' : 'No Data'}
+        </Button>
         <TableContainer>
           <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Id</TableCell>
+                <TableCell>Senosr Id</TableCell>
+                <TableCell>Reading Type</TableCell>
+                <TableCell>Reading Value</TableCell>
+                <TableCell>Reading Date</TableCell>
+                <TableCell>Reading Description</TableCell>
+                <TableCell>Time</TableCell>
+              </TableRow>
+            </TableHead>
             <TableBody>
               {sensorReadings.map((sensorReadings, index) => (
                 <TableRow key={index}>
