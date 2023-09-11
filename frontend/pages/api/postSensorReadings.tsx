@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  const { type, location, time } = req.body;
   try {
     const response = 
     await fetch('http://localhost:8000/sensorReadings/', {
