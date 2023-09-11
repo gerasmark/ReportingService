@@ -78,7 +78,7 @@ const SensorMetricsPage = () => {
           Filter 
         </Button>
         <Button>
-            {sensorMetrics.range > 0? 'View' : 'No Data'}
+            {sensorMetrics.range != null? 'View' : 'No Data'}
         </Button>
         <TableContainer>
           <Table>
