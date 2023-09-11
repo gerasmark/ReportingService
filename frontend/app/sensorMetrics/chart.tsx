@@ -7,7 +7,7 @@ const generateUniqueChartId = () => {
 
 const BarChart = ({ data, label, title }) => {
   const chartId = generateUniqueChartId(); 
-
+  const chartRef = useRef(null);
   useEffect(() => {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext('2d');
