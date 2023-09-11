@@ -6,21 +6,18 @@ const generateUniqueChartId = () => {
 };
 
 const BarChart = ({ data, label, title }) => {
-  const chartId = generateUniqueChartId(); // Generate a unique chart ID
-  const chartRef = useRef(null);
+  const chartId = generateUniqueChartId(); 
 
   useEffect(() => {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext('2d');
 
-      // Clear any previous chart with the same ID
       Chart.helpers.each(Chart.instances, (instance) => {
         if (instance.chart.canvas.id === chartId) {
           instance.destroy();
         }
       });
 
-      // Create a new chart
       new Chart(ctx, {
         type: 'bar',
         data: {
@@ -41,8 +38,8 @@ const BarChart = ({ data, label, title }) => {
               beginAtZero: true,
             },
           },
-          maintainAspectRatio: false, // Allow the chart to resize
-          responsive: true, // Make the chart responsive
+          maintainAspectRatio: false, 
+          responsive: true, 
         },
       });
     }
