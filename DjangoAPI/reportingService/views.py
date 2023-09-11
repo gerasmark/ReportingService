@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.core.paginator import Paginator
 from reportingService.models import Sensor, SensorReading
-from reportingService.serializers import SensorSerializer, SensorReadingSerializer
+from reportingService.serializers import SensorReadingSerializer
 import json
 
 # Create your views here.
