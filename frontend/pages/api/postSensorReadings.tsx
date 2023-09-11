@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   try {
     const response = 
-    await fetch('http://localhost:8000/sensorReadings/', {
+    await fetch('http://djangoapi:8000/sensorReadings/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

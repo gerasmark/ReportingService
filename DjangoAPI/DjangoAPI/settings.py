@@ -29,7 +29,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djangoapi', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            "host": 'mongodb://' + DB_USER + ':' + DB_PASSWORD + '@localhost:27017/?authMechanism=DEFAULT',
+            "host": 'mongodb://' + DB_USER + ':' + DB_PASSWORD + '@mongodb:27017/?authMechanism=DEFAULT',
             "name": "Database",
         }
     }
