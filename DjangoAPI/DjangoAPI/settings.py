@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            "host": 'mongodb://' + DB_USER + ':' + DB_PASSWORD + '@mongodb/?authMechanism=DEFAULT',
+            "host": 'mongodb://' + DB_USER + ':' + DB_PASSWORD + '@localhost:27017/?authMechanism=DEFAULT',
             "name": "Database",
         }
     }
