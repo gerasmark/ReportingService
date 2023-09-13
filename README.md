@@ -1,6 +1,6 @@
 # Reporting Service 
 ## Project Overview
-Our web application is a comprehensive system designed to manage and retrieve sensor readings of temperature, humidity, and acoustic data. It seamlessly integrates MongoDB Cloud Atlas for data storage and MongoDB Compass for efficient database management. The backend server is powered by Python with Django, providing robust functionality and a user-friendly API.
+Our web application is a comprehensive system designed to manage and retrieve sensor readings of temperature, humidity, and acoustic data. It seamlessly integrates MongoDB for data storage and MongoDB Compass for efficient database management. The backend server is powered by Python with Django, providing robust functionality and a user-friendly API. The frontend is built with Next.js a popular React framework.
 ## REST API Endpoints
 1)Retrieve All Sensor Readings
 
@@ -24,13 +24,15 @@ Description: Obtain vital metrics for your sensor data, including mean value, mi
 To get this project up and running locally on your computer follow the following steps.
 1. Clone this repository
 
-2. Set up a python virtual environment
-3. Create a .env file with the DB_USER and DB_PASSWORD
+2. Set up docker engine
+3. Run the following commands
+```
+docker-compose build
+docker-compose up
+```
+## Usage
+Open your web browser and navigate to the frontend at http://localhost:3000.
 
-4. Run the following commands
-```
-python -m pip install -r requirements.txt
-python manage.py migrate
-python manage.py createdata
-python manage.py runserver
-```
+Explore the sensor readings and metrics by clicking on the /sensorReadings and /sensorMetrics pages.
+
+The backend API is available at http://localhost:8000. You can interact with it using API requests.
