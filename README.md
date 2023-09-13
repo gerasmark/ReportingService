@@ -25,7 +25,8 @@ To get this project up and running locally on your computer follow the following
 1. Clone this repository
 
 2. Set up docker engine
-3. Run the following commands
+3. Create .env file with DB_USER, DB_PASSWORD and SECRET_KEY for the DjangoAPI
+4. Run the following commands
 ```
 docker-compose build
 docker-compose up
