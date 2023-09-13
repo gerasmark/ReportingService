@@ -10,10 +10,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import AppBar from '../AppBar';
 
 const SensorReadingsPage = () => {
   const [type, setType] = useState('');
@@ -43,26 +40,8 @@ const SensorReadingsPage = () => {
 
   return (
       <div>
-        <AppBar>
-            <Toolbar>
-            <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-            Sensor App
-            </Typography>
-            <div>
-//             <Link href="/sensorReadings">
-//               <Button variant="contained" color="primary">
-//                 Sensor Readings
-//               </Button>
-//             </Link>
-//             <Link href="/sensorMetrics">
-//               <Button variant="contained" color="secondary">
-//                 Sensor Metrics
-//               </Button>
-//             </Link>
-//           </div>
-            </Toolbar>
-        </AppBar>
-        <main style={{ marginTop: '80px' }}></main>
+        <AppBar />
+        <main style={{ marginTop: '20px' }}></main>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <InputLabel>Sensor Type</InputLabel>
           <TextField
