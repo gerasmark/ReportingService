@@ -12,14 +12,17 @@ import InputLabel from '@mui/material/InputLabel';
 import TableHead from '@mui/material/TableHead';
 import AppBar from '../AppBar';
 import BarChart from './chart';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const SensorMetricsPage = () => {
   const [sensorId, setSensorId] = useState('');
   const [sensorMetrics, setSensorMetrics] = useState([]);
   const [max10Sensors, setMax10Sensors] = useState([]);
   const [min10Sensors, setMin10Sensors] = useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const handleFilterSubmit = async () => {
+    setLoading(true);
     const response = await fetch('/api/postSensorMetrics/', {
       method: 'POST',
       headers: {
@@ -34,8 +37,10 @@ const SensorMetricsPage = () => {
       setSensorMetrics(data); 
       setMax10Sensors(data.maxValues);
       setMin10Sensors(data.minValues);
+      setLoading(false);
     } else {
       console.error('Failed to fetch data');
+      setLoading(false);
     }
   };
 
@@ -50,13 +55,15 @@ const SensorMetricsPage = () => {
             onChange={(e) => setSensorId(e.target.value)}
           />
         </div>
-        <Button
+        <LoadingButton
           variant="contained"
           color="primary"
-          onClick = {handleFilterSubmit}
+          onClick={handleFilterSubmit}
+          loading={loading}
+          loadingIndicator="Loading…"
         >
-          Filter 
-        </Button>
+          Filter
+        </LoadingButton>
         <Button>
             {sensorMetrics.range != null? 'View' : 'No Data'}
         </Button>

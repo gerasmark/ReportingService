@@ -11,14 +11,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
 import AppBar from '../AppBar';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const SensorReadingsPage = () => {
   const [type, setType] = useState('');
   const [location, setLocation] = useState('');
   const [time, setTime] = useState('');
   const [sensorReadings, setSensorReadings] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleFilterSubmit = async () => {
+    setLoading(true);
     const response = await fetch('/api/postSensorReadings/', {
       method: 'POST',
       headers: {
@@ -33,7 +36,9 @@ const SensorReadingsPage = () => {
     if (response.ok) {
       const data = await response.json();
       setSensorReadings(data); 
+      setLoading(false);
     } else {
+      setLoading(false);
       console.error('Failed to fetch data');
     }
   };
@@ -59,16 +64,19 @@ const SensorReadingsPage = () => {
             onChange={(e) => setTime(e.target.value)}
           />
         </div>
-        <Button
+        <LoadingButton
           variant="contained"
           color="primary"
-          onClick = {handleFilterSubmit}
+          onClick={handleFilterSubmit}
+          loading={loading}
+          loadingIndicator="Loading…"
         >
-          Filter 
-        </Button>
+          Filter
+        </LoadingButton>
         <Button>
             {sensorReadings.length > 0? 'View' : 'No Data'}
         </Button>
+
         <TableContainer>
           <Table>
             <TableHead>
