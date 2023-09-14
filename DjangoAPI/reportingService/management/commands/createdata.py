@@ -24,7 +24,6 @@ class Command(BaseCommand):
                 location=fake.city()
             )
             empty = database_sensor.filter(sensorId=sensor.sensorId)
-            print(empty)
             if len(empty) == 0:
                 sensor_data.append(sensor)
 
