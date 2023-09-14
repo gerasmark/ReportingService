@@ -19,8 +19,11 @@ const SensorReadingsPage = () => {
   const [time, setTime] = useState('');
   const [sensorReadings, setSensorReadings] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [lastPage, setLastPage] = useState(false);
 
-  const handleFilterSubmit = async () => {
+  const handleFilterSubmit = async (number) => {
+    setPageNumber(number);
     setLoading(true);
     const response = await fetch('/api/postSensorReadings/', {
       method: 'POST',
@@ -31,15 +34,42 @@ const SensorReadingsPage = () => {
         type: type,
         location: location,
         time: time,
+        pageNumber: number
     }),
     });
     if (response.ok) {
       const data = await response.json();
+      if(number > 1 ) {
+        if (JSON.stringify(sensorReadings) == JSON.stringify(data)) {
+          setPageNumber(number - 1);
+          setLastPage(true);
+        }
+      }
       setSensorReadings(data); 
       setLoading(false);
     } else {
       setLoading(false);
       console.error('Failed to fetch data');
+    }
+  };
+
+  const handleFilter = async () => {
+    handleFilterSubmit(1);
+    setLastPage(false);
+  };
+
+  const handlePreviousPage = async () => {
+    if (pageNumber > 1) {
+      if(lastPage) {
+        setLastPage(false);
+      }
+      handleFilterSubmit(pageNumber - 1);
+    }
+  };
+
+  const handleNextPage = async () => {
+    if (!lastPage) {
+      handleFilterSubmit(pageNumber + 1);
     }
   };
 
@@ -67,7 +97,7 @@ const SensorReadingsPage = () => {
         <LoadingButton
           variant="contained"
           color="primary"
-          onClick={handleFilterSubmit}
+          onClick={handleFilter}
           loading={loading}
           loadingIndicator="Loading…"
         >
@@ -76,7 +106,19 @@ const SensorReadingsPage = () => {
         <Button>
             {sensorReadings.length > 0? 'View' : 'No Data'}
         </Button>
-
+        <Button
+        onClick={handlePreviousPage}
+        >
+          previous
+        </Button>
+        <Button
+        onClick={handleNextPage}
+        >
+          next
+        </Button>
+        <Button>
+          {pageNumber}
+        </Button>
         <TableContainer>
           <Table>
             <TableHead>
