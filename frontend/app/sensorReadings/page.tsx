@@ -12,6 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
 import AppBar from '../AppBar';
 import LoadingButton from '@mui/lab/LoadingButton';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const SensorReadingsPage = () => {
   const [type, setType] = useState('');
@@ -79,10 +81,17 @@ const SensorReadingsPage = () => {
         <main style={{ marginTop: '20px' }}></main>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <InputLabel>Sensor Type</InputLabel>
-          <TextField
+          <Select
             value={type}
             onChange={(e) => setType(e.target.value)}
-          />
+            label="Sensor Type"
+            variant="outlined"
+            fullWidth
+            >
+            <MenuItem value="temperature">Temperature</MenuItem>
+            <MenuItem value="humidity">Humidity</MenuItem>
+            <MenuItem value="acoustic">Acoustic</MenuItem>
+          </Select>
           <InputLabel>Sensor Location</InputLabel>
           <TextField
             value={location}
