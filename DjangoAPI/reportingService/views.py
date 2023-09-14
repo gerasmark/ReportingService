@@ -16,6 +16,7 @@ def sensorReadings(request):
             type = body['type']
             location = body['location']
             time = body['time']
+            pageNumber = body['pageNumber']
             sensorReadings = SensorReading.objects.all()
             sensor = Sensor.objects.all()
             if type:
@@ -29,10 +30,10 @@ def sensorReadings(request):
                 sensorReadings = sensorReadings.filter(time=time)
             # serializer = SensorSerializer(sensor, many=True)
             # return JsonResponse(serializer.data, status=200, safe=False)
+            sensorReadings = sensorReadings.order_by('-Id')
             page_size = 10
-            page_number = 1
             paginator = Paginator(sensorReadings, page_size)
-            page = paginator.get_page(page_number)
+            page = paginator.get_page(pageNumber)
             serializer = SensorReadingSerializer(page, many=True)
             return JsonResponse(serializer.data, status=200, safe=False)
         except Exception as e:
