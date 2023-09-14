@@ -45,7 +45,8 @@ class testViews(TestCase):
         data = {
             "type": "temperature",
             "location": "Marousi",
-            "time": "00:00:00"
+            "time": "00:00:00",
+            "pageNumber": 1,
         }
         response = self.client.post('/sensorReadings/', json.dumps(data), content_type = 'json')
         # response_data = json.loads(response.content.decode('utf-8'))
