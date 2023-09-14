@@ -23,8 +23,8 @@ const SensorReadingsPage = () => {
   const [lastPage, setLastPage] = useState(false);
 
   const handleFilterSubmit = async (number) => {
-    setPageNumber(number);
     setLoading(true);
+    setPageNumber(number);
     const response = await fetch('/api/postSensorReadings/', {
       method: 'POST',
       headers: {
@@ -117,7 +117,7 @@ const SensorReadingsPage = () => {
           next
         </Button>
         <Button>
-          {pageNumber}
+        {((sensorReadings.length > 0) && (loading == false))? pageNumber : ' '}
         </Button>
         <TableContainer>
           <Table>
