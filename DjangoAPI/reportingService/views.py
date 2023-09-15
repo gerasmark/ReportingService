@@ -42,6 +42,7 @@ def sensorReadings(request):
     elif request.method == 'GET':
         try:
             sensorReadings = SensorReading.objects.all()
+            sensorReadings = sensorReadings.order_by('-Id')
             serializer = SensorReadingSerializer(sensorReadings, many=True)
             page_size = 10
             page_number = 1
