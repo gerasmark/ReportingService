@@ -14,6 +14,8 @@ class Sensor(models.Model):
     vendorEmail = models.EmailField()
     description = models.TextField()
     location = models.CharField(max_length=100)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
 
     def __str__(self):
         return f"Sensor: {self.sensorId} "

@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand
 from faker import Faker
 import random
 from reportingService.models import Sensor, SensorReading
-
 class Command(BaseCommand):
     help = 'Create fake data for our database'
 
@@ -21,7 +20,9 @@ class Command(BaseCommand):
                 vendorName=fake.company(),
                 vendorEmail=fake.email(),
                 description=fake.sentence(),
-                location=fake.city()
+                location = fake.city(),
+                latitude = fake.latitude(),
+                longitude = fake.longitude()
             )
             empty = database_sensor.filter(sensorId=sensor.sensorId)
             if len(empty) == 0:
