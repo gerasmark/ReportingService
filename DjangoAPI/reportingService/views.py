@@ -1,7 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 import json
-from reportingService.service import sensorMetricsService, sensorReadingService, sensorReadingServiceGet
+from reportingService.services.filterService import sensorMetricsService, sensorReadingService, sensorReadingServiceGet
+from reportingService.services.addSensorService import addSensorService
 
 # Create your views here.
 
@@ -28,9 +29,21 @@ def sensorMetrics(request):
         if request.method == 'POST':
             body_unicode = request.body.decode('utf-8')
             body = json.loads(body_unicode)
-            print(body)
             result = sensorMetricsService(body)
-            print(result)
             return JsonResponse(result, status=200, safe=False)
     except Exception as e:
             return JsonResponse({'error_message': str(e)}, status=400, safe=False)
+    
+@csrf_exempt
+def addSensor(request):
+    try:
+        if request.method == 'POST':
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            status = addSensorService(body)
+            if status == 200:
+                return JsonResponse({'message': 'Sensor created successfully'}, status=status, safe=False)
+            else:
+                return JsonResponse({'message': 'Error creating Sensor'}, status=status, safe=False)
+    except Exception as e:
+        return JsonResponse({'error_message': str(e)}, status=400, safe=False)
