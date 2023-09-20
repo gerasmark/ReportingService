@@ -18,3 +18,10 @@ def addSensorReadingService(body):
             sensor_reading.save()
             return 200
     return 400
+
+def deleteSensorReadingService(Id):
+    sensorReading = SensorReading.objects.filter(Id=Id)
+    if len(sensorReading) == 0: 
+        return 404
+    sensorReading.delete()
+    return 200

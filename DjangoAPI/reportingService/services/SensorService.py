@@ -18,3 +18,10 @@ def addSensorService(body):
         return 200
     return 400
 
+def deleteSensorService(sensorId):
+    sensor = Sensor.objects.get(sensorId = sensorId)
+    if not sensor:
+        return 404
+    sensor.delete()
+    SensorReading.objects.filter(sensorId=sensorId).delete()
+    return 200

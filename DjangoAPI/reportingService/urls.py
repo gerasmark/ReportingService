@@ -1,9 +1,11 @@
-from django.urls import re_path
+from django.urls import path
 from reportingService import views
 
 urlpatterns = [
-    re_path('sensorReadings/', views.sensorReadings, name='sensorReadings'),
-    re_path('sensorMetrics/', views.sensorMetrics, name='sensorMetrics'),
-    re_path('sensor/', views.sensor, name='sensor'),
-    re_path('sensorReading/', views.sensorReading, name='sensorReading'),
+    path('deleteSensor/<str:sensorId>/', views.deleteSensor, name='deleteSensor'),
+    path('sensorReadings/', views.sensorReadings, name='sensorReadings'),
+    path('sensorMetrics/', views.sensorMetrics, name='sensorMetrics'),
+    path('sensor/', views.sensor, name='sensor'),
+    path('sensorReading/', views.sensorReading, name='sensorReading'),
+    path('deleteSensorReading/<str:Id>/', views.deleteSensorReading, name='deleteSensorReading'),
 ]
