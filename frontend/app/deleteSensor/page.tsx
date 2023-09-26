@@ -17,7 +17,7 @@ function DeleteSensor() {
           method: 'DELETE',
         });
   
-        if (response.status === 200) {
+        if (response.status === 204) {
           setResponseMessage('Sensor deleted successfully');
         } else {
           setResponseMessage('Failed to delete sensor');

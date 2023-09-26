@@ -17,7 +17,7 @@ function DeleteSensorReading() {
           method: 'DELETE',
         });
   
-        if (response.status === 200) {
+        if (response.status === 204) {
           setResponseMessage('Sensor reading deleted successfully');
         } else {
           setResponseMessage('Failed to delete sensor reading');
