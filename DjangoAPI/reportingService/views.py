@@ -43,7 +43,7 @@ def sensor(request):
             body_unicode = request.body.decode('utf-8')
             body = json.loads(body_unicode)
             status = addSensorService(body)
-            if status == 200:
+            if status == 201:
                 return JsonResponse({'message': 'Sensor created successfully'}, status=status, safe=False)
             else:
                 return JsonResponse({'message': 'Error creating Sensor'}, status=status, safe=False)
@@ -55,7 +55,7 @@ def deleteSensor(request, sensorId):
     try:
         # sensorId = request.query_params.get('sensorId',None)
         status = deleteSensorService(sensorId)
-        if status == 200:
+        if status == 204:
             return JsonResponse({'message': 'Sensor deleted successfully'}, status=status, safe=False)
         else:
             return JsonResponse({'message': 'Error deleting Sensor'}, status=status, safe=False)
@@ -70,7 +70,7 @@ def sensorReading(request):
             body_unicode = request.body.decode('utf-8')
             body = json.loads(body_unicode)
             status = addSensorReadingService(body)
-            if status == 200:
+            if status == 201:
                 return JsonResponse({'message': 'Sensor Reading created successfully'}, status=status, safe=False)
             else:
                 return JsonResponse({'message': 'Error creating Sensor Reading'}, status=status, safe=False)
@@ -82,7 +82,7 @@ def deleteSensorReading(request, Id):
     try:
         # Id = request.query_params.get('Id',None)
         status = deleteSensorReadingService(Id)
-        if status == 200:
+        if status == 204:
             return JsonResponse({'message': 'Sensor Reading deleted successfully'}, status=status, safe=False)
         else:
             return JsonResponse({'message': 'Error deleting Sensor Reading'}, status=status, safe=False)

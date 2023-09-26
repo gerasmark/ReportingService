@@ -16,7 +16,7 @@ def addSensorReadingService(body):
         sensor = Sensor.objects.filter(sensorId=sensor_reading.sensorId).first()
         if sensor:
             sensor_reading.save()
-            return 200
+            return 201
     return 400
 
 def deleteSensorReadingService(Id):
@@ -24,4 +24,4 @@ def deleteSensorReadingService(Id):
     if len(sensorReading) == 0: 
         return 404
     sensorReading.delete()
-    return 200
+    return 204

@@ -15,7 +15,7 @@ def addSensorService(body):
     empty = database_sensor.filter(sensorId=sensor.sensorId)
     if len(empty) == 0:
         sensor.save()
-        return 200
+        return 201
     return 400
 
 def deleteSensorService(sensorId):
@@ -24,4 +24,4 @@ def deleteSensorService(sensorId):
         return 404
     sensor.delete()
     SensorReading.objects.filter(sensorId=sensorId).delete()
-    return 200
+    return 204
