@@ -23,6 +23,16 @@ const MyAppBar = () => {
               Sensor Metrics
             </Button>
           </Link>
+          <Link href="/deleteSensor" color="inherit" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="secondary" style={{ marginRight: '10px' }}>
+              Delete Sensor
+            </Button>
+          </Link>
+          <Link href="/deleteSensorReading" color="inherit" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="secondary" style={{ marginRight: '10px' }}>
+              Delete Sensor Reading
+            </Button>
+          </Link>
         </div>
       </Toolbar>
     </AppBar>
