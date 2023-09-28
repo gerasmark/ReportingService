@@ -15,6 +15,7 @@ import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import {LocalizationProvider} from '@mui/x-date-pickers';
 import { format } from 'date-fns';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import Grid from '@mui/material/Grid';
 
 const addSensorReadingPage = () => {
   const {
@@ -143,6 +144,7 @@ const addSensorReadingPage = () => {
           />
         )}
       />
+      <Grid item  xs={12}>
       <Controller
         name="time"
         control={control}
@@ -160,6 +162,7 @@ const addSensorReadingPage = () => {
           </LocalizationProvider>
         )}
       />
+      </Grid>
       <Button
         type="submit"
         variant="contained"
