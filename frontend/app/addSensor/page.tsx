@@ -60,7 +60,7 @@ const addSensorPage = () => {
           />
         )}
       />
-
+      <InputLabel>Sensor Type</InputLabel>
       <Controller
         name="type"
         control={control}

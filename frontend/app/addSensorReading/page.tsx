@@ -82,12 +82,13 @@ const addSensorReadingPage = () => {
           />
         )}
       />
-
+      <InputLabel>Reading Type</InputLabel>
       <Controller
         name="readingType"
         control={control}
         defaultValue=""
         render={({ field }) => (
+            
             <Select
             {...field}
             label="Sensor Type"
