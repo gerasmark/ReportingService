@@ -35,6 +35,5 @@ docker-compose up
 Open your web browser and navigate to the frontend at http://localhost:3000.
 
 Explore the sensor readings and metrics by clicking on the /sensorReadings and /sensorMetrics pages.
-##BYE
 
 The backend API is available at http://localhost:8000. You can interact with it using API requests.
