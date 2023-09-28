@@ -29,6 +29,7 @@ const addSensorReadingPage = () => {
 
   const handleFilterSubmit = async (data, event) => {
     setLoading(true);
+    try {
      data.readingDate = format(data.readingDate, 'yyyy-MM-dd');
      data.time = format(data.time, 'HH:mm:ss');
     const response = await fetch('http://127.0.0.1:8000/sensorReading/', {
@@ -47,7 +48,10 @@ const addSensorReadingPage = () => {
       console.error('Failed to fetch data');
       setResponseMessage('Failed to create Sensor Reading');
       setLoading(false);
-    }
+    } 
+  } catch {
+      setResponseMessage('Failed to create Sensor Reading');
+  }
   };
 
   return (
@@ -55,6 +59,7 @@ const addSensorReadingPage = () => {
         <AppBar />
         <main style={{ marginTop: '20px' }}></main>
     <form onSubmit={handleSubmit(handleFilterSubmit)}>
+    <InputLabel>Id</InputLabel>
       <Controller
         name="Id"
         control={control}
@@ -62,13 +67,13 @@ const addSensorReadingPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Id"
+            // label="Id"
             variant="outlined"
             fullWidth
           />
         )}
       />
-
+      <InputLabel>Sensor Id</InputLabel>
       <Controller
         name="sensorId"
         control={control}
@@ -76,7 +81,7 @@ const addSensorReadingPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Sensor Id"
+            // label="Sensor Id"
             variant="outlined"
             fullWidth
           />
@@ -101,6 +106,7 @@ const addSensorReadingPage = () => {
           </Select>
         )}
       />
+      <InputLabel>Reading Value</InputLabel>
       <Controller
         name="readingValue"
         control={control}
@@ -108,12 +114,13 @@ const addSensorReadingPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Reading Value"
+            // label="Reading Value"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Reading Date</InputLabel>
       <Controller
         name="readingDate"
         control={control}
@@ -132,6 +139,7 @@ const addSensorReadingPage = () => {
           </LocalizationProvider>
         )}
       />
+      <InputLabel>Description</InputLabel>
       <Controller
         name="description"
         control={control}
@@ -139,12 +147,13 @@ const addSensorReadingPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Description"
+            // label="Description"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Time</InputLabel>
       <Grid item  xs={12}>
       <Controller
         name="time"

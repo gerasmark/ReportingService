@@ -47,6 +47,7 @@ const addSensorPage = () => {
         <AppBar />
         <main style={{ marginTop: '20px' }}></main>
     <form onSubmit={handleSubmit(handleFilterSubmit)}>
+    <InputLabel>Sensor Id</InputLabel>
       <Controller
         name="sensorId"
         control={control}
@@ -54,7 +55,7 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Sensor Id"
+            // label="Sensor Id"
             variant="outlined"
             fullWidth
           />
@@ -68,7 +69,7 @@ const addSensorPage = () => {
         render={({ field }) => (
           <Select
           {...field}
-          label="Type"
+          // label="Type"
           variant="outlined"
           fullWidth
           >
@@ -78,7 +79,7 @@ const addSensorPage = () => {
         </Select>
         )}
       />
-
+      <InputLabel>Vendor Name</InputLabel>
       <Controller
         name="vendorName"
         control={control}
@@ -86,12 +87,13 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Vendor Name"
+            // label="Vendor Name"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Vendor Email</InputLabel>
       <Controller
         name="vendorEmail"
         control={control}
@@ -99,12 +101,13 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Vendor Email"
+            // label="Vendor Email"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Description</InputLabel>
       <Controller
         name="description"
         control={control}
@@ -112,12 +115,13 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Description"
+            // label="Description"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Location</InputLabel>
       <Controller
         name="location"
         control={control}
@@ -125,12 +129,13 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Location"
+            // label="Location"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Latitude</InputLabel>
       <Controller
         name="latitude"
         control={control}
@@ -138,12 +143,13 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Latitude"
+            // label="Latitude"
             variant="outlined"
             fullWidth
           />
         )}
       />
+      <InputLabel>Longtitude</InputLabel>
       <Controller
         name="longitude"
         control={control}
@@ -151,7 +157,7 @@ const addSensorPage = () => {
         render={({ field }) => (
           <TextField
             {...field}
-            label="Longitude"
+            // label="Longitude"
             variant="outlined"
             fullWidth
           />
