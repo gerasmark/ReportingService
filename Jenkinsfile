@@ -7,7 +7,7 @@ pipeline {
         stage("build") {
 
             steps {
-                echo "hello"
+                sh 'docker compose up'
             }
         }
 
@@ -15,6 +15,13 @@ pipeline {
 
             steps {
                 echo "good job"
+            }
+        }
+
+        stage("test") {
+
+            steps {
+                echo "Starting Testing"
             }
         }
     }
