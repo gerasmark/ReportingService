@@ -4,6 +4,18 @@ pipeline {
 
     stages {
 
+        stage("verify tools") {
+
+            steps {
+                sh '''
+            docker version 
+            docker info 
+            docker compose version
+            curl --version
+        '''
+            }
+        }
+
         stage("build") {
 
             steps {
