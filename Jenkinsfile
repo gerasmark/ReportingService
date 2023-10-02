@@ -16,6 +16,13 @@ pipeline {
             }
         }
 
+        stage("prune") {
+
+            steps {
+                echo "Pruning Docker Data"
+            }
+        }
+
         stage("build") {
 
             steps {
@@ -26,7 +33,7 @@ pipeline {
         stage("deploy") {
 
             steps {
-                echo "good job"
+                sh 'docker compose up'
             }
         }
 

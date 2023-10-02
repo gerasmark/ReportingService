@@ -1,2 +1,2 @@
 !#/bin/sh
-docker run -p 8080:8080 -p 50000:50000 --restart=on-failure -v /var/run/docker.sock:/var/run/docker.sock -d -v jenkins_home:/var/jenkins_home 46211
+docker run -p 8080:8080 -p 50000:50000 --restart=on-failure -v /var/run/docker.sock:/var/run/docker.sock -d -v jenkins_home:/var/jenkins_home jenkins2
