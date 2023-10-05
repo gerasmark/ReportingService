@@ -12,7 +12,9 @@ def sensorMetricsService(body):
     min_value = min(sensor_values_list)
     max_value = max(sensor_values_list)
     ascending_sensor_values_list = sorted(sensor_values_list,reverse=True)
+    ascending_sensor_values_list = unique(ascending_sensor_values_list)
     descending_sensor_values_list = sorted(sensor_values_list)
+    descending_sensor_values_list = unique(descending_sensor_values_list)
     ascending_sensor_values_list = ascending_sensor_values_list[:10]
     descending_sensor_values_list = descending_sensor_values_list[:10]
     range = round(max_value - min_value, 2)
@@ -62,3 +64,10 @@ def sensorReadingServiceGet(body):
     result = serializer.data
     return result
 
+def unique(list1):
+    unique_list = []
+    for x in list1:
+        if x not in unique_list:
+            unique_list.append(x)
+    return unique_list
+    
