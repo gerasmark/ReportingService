@@ -1,6 +1,7 @@
 from reportingService.models import SensorReading, Sensor
 from django.core.paginator import Paginator
 from reportingService.serializers import SensorReadingSerializer
+import pandas as pd
 
 def sensorMetricsService(body):
     sensorId = body['sensorId']
@@ -64,10 +65,52 @@ def sensorReadingServiceGet(body):
     result = serializer.data
     return result
 
+def sensorStatsService(sensorId):
+    sensorReadings = SensorReading.objects.all()
+    sensorReadings = sensorReadings.filter(sensorId=sensorId).values()
+    readings = pd.DataFrame(sensorReadings)
+    readings.drop(columns=['Id', 'readingType', 'description'], inplace=True)
+    readings['readingDate'] = pd.to_datetime(readings['readingDate'], format='%Y-%m-%d')
+    readings['time'] = pd.to_datetime(readings['time'], format='%H:%M:%S')
+    readings['year'] = readings['readingDate'].apply(lambda x : x.year)
+    readings['month'] = readings['readingDate'].apply(lambda x : x.month)
+    readings['day'] = readings['readingDate'].apply(lambda x : x.day)
+    readings['weekday'] = readings['readingDate'].apply(lambda x : x.day_name())
+    readings['weekofyear'] = readings['readingDate'].apply(lambda x : x.weekofyear)
+    readings['hour'] = readings['time'].apply(lambda x : x.hour)
+    readings['minute'] = readings['time'].apply(lambda x : x.minute)
+    readings['season'] = readings['month'].apply(month2seasons)
+    readings['timing'] = readings['hour'].apply(hours2timing)
+    result = readings.to_json()
+    return result
+
 def unique(list1):
     unique_list = []
     for x in list1:
         if x not in unique_list:
             unique_list.append(x)
     return unique_list
-    
+
+def month2seasons(x):
+    if x in [12, 1, 2]:
+        season = 'Winter'
+    elif x in [3, 4, 5]:
+        season = 'Spring'
+    elif x in [6, 7, 8]:
+        season = 'Summer'
+    elif x in [9,10, 11]:
+        season = 'Fall'
+    return season
+
+def hours2timing(x):
+    if x in [22,23,0,1,2,3]:
+        timing = 'Night'
+    elif x in range(4, 12):
+        timing = 'Morning'
+    elif x in range(12, 17):
+        timing = 'Afternoon'
+    elif x in range(17, 22):
+        timing = 'Evening'
+    else:
+        timing = 'X'
+    return timing

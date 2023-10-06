@@ -1,7 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 import json
-from reportingService.services.filterService import sensorMetricsService, sensorReadingService, sensorReadingServiceGet
+from reportingService.services.filterService import sensorMetricsService, sensorReadingService, sensorReadingServiceGet, sensorStatsService
 from reportingService.services.SensorService import addSensorService, deleteSensorService
 from reportingService.services.SensorReadingService import addSensorReadingService, deleteSensorReadingService
 
@@ -86,5 +86,13 @@ def deleteSensorReading(request, Id):
             return JsonResponse({'message': 'Sensor Reading deleted successfully'}, status=status, safe=False)
         else:
             return JsonResponse({'message': 'Error deleting Sensor Reading'}, status=status, safe=False)
+    except Exception as e:
+        return JsonResponse({'error_message': str(e)}, status=400, safe=False)
+    
+@csrf_exempt
+def sensorStats(request, sensorId):
+    try:
+        readings = sensorStatsService(sensorId)
+        return JsonResponse(readings, status=200, safe=False)
     except Exception as e:
         return JsonResponse({'error_message': str(e)}, status=400, safe=False)

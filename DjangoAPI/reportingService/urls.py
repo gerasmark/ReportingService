@@ -8,4 +8,5 @@ urlpatterns = [
     path('sensor/', views.sensor, name='sensor'),
     path('sensorReading/', views.sensorReading, name='sensorReading'),
     path('deleteSensorReading/<str:Id>/', views.deleteSensorReading, name='deleteSensorReading'),
+    path('sensorStats/<str:sensorId>/', views.sensorStats, name='sensorStats'),
 ]
