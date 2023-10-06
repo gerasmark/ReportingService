@@ -81,7 +81,7 @@ def sensorStatsService(sensorId):
     readings['minute'] = readings['time'].apply(lambda x : x.minute)
     readings['season'] = readings['month'].apply(month2seasons)
     readings['timing'] = readings['hour'].apply(hours2timing)
-    result = readings.to_json()
+    result = readings.to_json(orient='records')
     return result
 
 def unique(list1):
