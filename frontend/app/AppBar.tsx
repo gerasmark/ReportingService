@@ -43,6 +43,11 @@ const MyAppBar = () => {
               Add Sensor Reading
             </Button>
           </Link>
+          <Link href="/sensorStats" color="inherit" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="secondary" style={{ marginRight: '10px' }}>
+              Sensor Stats
+            </Button>
+          </Link>
         </div>
       </Toolbar>
     </AppBar>
