@@ -92,11 +92,24 @@ def sensorStatsService(sensorId):
     weekday_mean = readings.groupby(['weekday'])['readingValue'].mean().reset_index()
     weekday_mean.set_index('weekday')
     weekday_mean['weekday']= weekday_mean['weekday'].astype(str)
-    
+    month_count = readings["month"].value_counts().reset_index()
+    month_count.columns = ['readingValue', 'count']
+    season_count = readings["season"].value_counts().reset_index()
+    season_count.columns = ['readingValue', 'count']
+    timing_count = readings["timing"].value_counts().reset_index()
+    timing_count.columns = ['readingValue', 'count']
+    distribution = readings['readingValue'].value_counts().reset_index()
+    distribution.columns = ['readingValue', 'count']
+
     data_to_send = {
     'month_mean': month_mean.to_dict(orient='records'),
     'date_mean': date_mean.to_dict(orient='records'),
-    'weekday_mean': weekday_mean.to_dict(orient='records')
+    'weekday_mean': weekday_mean.to_dict(orient='records'),
+    'month_count': month_count.to_dict(orient='records'),
+    'season_count': season_count.to_dict(orient='records'),
+    'timing_count': timing_count.to_dict(orient='records'),
+    'distribution': distribution.to_dict(orient='records')
+
 }
     result = json.dumps(data_to_send)
     # result = readings.to_json(orient='records')
