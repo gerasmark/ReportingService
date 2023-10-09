@@ -2,6 +2,7 @@ from reportingService.models import SensorReading, Sensor
 from django.core.paginator import Paginator
 from reportingService.serializers import SensorReadingSerializer
 import pandas as pd
+import json 
 
 def sensorMetricsService(body):
     sensorId = body['sensorId']
@@ -81,7 +82,19 @@ def sensorStatsService(sensorId):
     readings['minute'] = readings['time'].apply(lambda x : x.minute)
     readings['season'] = readings['month'].apply(month2seasons)
     readings['timing'] = readings['hour'].apply(hours2timing)
-    result = readings.to_json(orient='records')
+    month_mean = readings.groupby('month')['readingValue'].mean().reset_index()
+    month_mean.set_index('month')
+    date_mean = in_date = readings.groupby('readingDate')['readingValue'].mean().reset_index()
+    date_mean.set_index('readingDate')
+    weekday_mean = readings.groupby(['weekday'])['readingValue'].mean().reset_index()
+    weekday_mean.set_index('weekday')
+    data_to_send = {
+    'month_mean': month_mean.to_dict(orient='records'),
+    'date_mean': date_mean.to_dict(orient='records'),
+    'weekday_mean': weekday_mean.to_dict(orient='records')
+}
+    result = json.dumps(data_to_send)
+    # result = readings.to_json(orient='records')
     return result
 
 def unique(list1):
