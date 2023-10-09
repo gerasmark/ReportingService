@@ -1,37 +1,35 @@
-import React, { useEffect } from 'react';
-import Plotly from 'react-plotly.js';
-import dynamic from 'next/dynamic'
+// components/Histogram.js
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
 
-const HistogramChart = ({ data, columnName }) => {
-  useEffect(() => {
-    if (data && data[columnName]) {
-      const columnData = data[columnName];
-      const trace = {
-        x: columnData,
-        type: 'histogram',
-        bins: 10,
-      };
-      const layout = {
-        title: `Histogram for ${columnName}`,
-        xaxis: {
-          title: columnName,
-        },
-        yaxis: {
-          title: 'Frequency',
-        },
-      };
-      Plotly.newPlot('histogram-chart', [trace], layout);
-      return () => {
-        Plotly.purge('histogram-chart');
-      };
-    }
-  }, [data, columnName]);
+const Histogram = ({ data, title }) => {
+  const chartData = {
+    labels: data.labels,
+    datasets: [
+      {
+        label: 'Histogram',
+        data: data.values,
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      },
+    ],
+  };
+
+  const chartOptions = {
+    scales: {
+      x: {
+        beginAtZero: true,
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+  };
 
   return (
-    <div id="histogram-chart"></div>
+    <div>
+      <h1>{title}</h1>
+      <Bar data={chartData} options={chartOptions} />
+    </div>
   );
 };
 
-export default dynamic(() => Promise.resolve(HistogramChart), {
-  ssr: false
-});
+export default Histogram;

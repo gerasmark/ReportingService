@@ -6,12 +6,12 @@ import InputLabel from '@mui/material/InputLabel';
 import AppBar from '../AppBar';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
-import Plot from 'react-plotly.js';
 import Histogram from './histogram';
+import MyResponsiveLine, {data} from './line';
 
 function SensorStats() {
     const [sensorId, setSensorId] = useState('');
-    const [sensorStats, setSensorStats] = useState({});
+    const [sensorStats, setSensorStats] = useState([]);
     const [loading, setLoading] = React.useState(false);
     const handleFilterSubmit = async (sensorId) => {
         setLoading(true);
@@ -33,9 +33,20 @@ function SensorStats() {
               }
             }
           }
+          
+          const dat = [
+            {
+              id: 'Reading Value',
+              data: object.map((item) => ({
+                "x": new Date(item.readingDate).toISOString().split('T')[0], 
+                "y": item.readingValue,
+              })),
+            },
+          ];
           console.log(allValues);
-          setSensorStats(allValues);
+          setSensorStats(dat);
           setLoading(false);
+          console.log(sensorStats);
         } else {
           console.error('Failed to fetch data');
           setLoading(false);
@@ -65,13 +76,9 @@ function SensorStats() {
         <Button>
             {sensorStats.range != null? 'View' : 'No Data'}
         </Button>
-        <Histogram data={sensorStats} columnName="sensorId" />
-        <Plot
-        data={[
-          {type: 'histogram', x: sensorStats?.sensorId},
-        ]}
-        layout={ {width: 320, height: 240, title: 'A Fancy Plot'} }
-      />
+        <div style={{ height: '100vh', margin: '4rem' }}>
+        {sensorStats.length > 0 && <MyResponsiveLine data ={sensorStats} />}
+        </div>
       </div>
     );
   }
