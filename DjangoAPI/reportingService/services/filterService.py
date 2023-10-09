@@ -82,12 +82,17 @@ def sensorStatsService(sensorId):
     readings['minute'] = readings['time'].apply(lambda x : x.minute)
     readings['season'] = readings['month'].apply(month2seasons)
     readings['timing'] = readings['hour'].apply(hours2timing)
+    readings.sort_values(by='readingDate')
     month_mean = readings.groupby('month')['readingValue'].mean().reset_index()
     month_mean.set_index('month')
+    month_mean['month']= month_mean['month'].astype(str)
     date_mean = in_date = readings.groupby('readingDate')['readingValue'].mean().reset_index()
     date_mean.set_index('readingDate')
+    date_mean['readingDate']= date_mean['readingDate'].astype(str)
     weekday_mean = readings.groupby(['weekday'])['readingValue'].mean().reset_index()
     weekday_mean.set_index('weekday')
+    weekday_mean['weekday']= weekday_mean['weekday'].astype(str)
+    
     data_to_send = {
     'month_mean': month_mean.to_dict(orient='records'),
     'date_mean': date_mean.to_dict(orient='records'),

@@ -13,7 +13,7 @@ export const data=
     }
   ]
 
-const MyResponsiveLine = ({ data }) => {
+const MyResponsiveLine = ({ data, xAxisLabel, yAxisLabel }) => {
     // if (data) {
     //     return <p>No data available.</p>;
     //   }
@@ -37,7 +37,7 @@ const MyResponsiveLine = ({ data }) => {
             tickPadding: 5,
             tickRotation: -45,
             tickValues: 'every 30 days',
-            legend: 'transportation',
+            legend: xAxisLabel, 
             legendOffset: 36,
             legendPosition: 'middle'
         }}
@@ -45,7 +45,7 @@ const MyResponsiveLine = ({ data }) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'count',
+            legend: yAxisLabel, 
             legendOffset: -40,
             legendPosition: 'middle'
         }}

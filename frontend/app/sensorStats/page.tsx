@@ -11,7 +11,9 @@ import MyResponsiveLine, {data} from './line';
 
 function SensorStats() {
     const [sensorId, setSensorId] = useState('');
-    const [sensorStats, setSensorStats] = useState([]);
+    const [monthStats, setMonthStats] = useState([]);
+    const [dailyStats, setDailyStats] = useState([]);
+    const [weekdayStats, setWeekdayStats] = useState([]);
     const [loading, setLoading] = React.useState(false);
     const handleFilterSubmit = async (sensorId) => {
         setLoading(true);
@@ -21,32 +23,55 @@ function SensorStats() {
         if (response.ok) {
           const data = await response.json();
           const object = JSON.parse(data);
-          const allValues = {};
-          for (const item of object) {
-            for (const column in item) {
-              if (item.hasOwnProperty(column)) {
-                if (!allValues[column]) {
-                  allValues[column] = [];
-                }
-                const value = item[column];
-                allValues[column].push(value);
-              }
-            }
-          }
+          console.log(object);
+          // const allValues = {};
+          // for (const item of object) {
+          //   for (const column in item) {
+          //     if (item.hasOwnProperty(column)) {
+          //       if (!allValues[column]) {
+          //         allValues[column] = [];
+          //       }
+          //       const value = item[column];
+          //       allValues[column].push(value);
+          //     }
+          //   }
+          // }
           
           const dat = [
             {
               id: 'Reading Value',
-              data: object.map((item) => ({
-                "x": new Date(item.readingDate).toISOString().split('T')[0], 
+              color: "hsl(151, 70%, 50%)",
+              data: object["month_mean"].map((item) => ({
+                "x": item.month ,
                 "y": item.readingValue,
               })),
             },
           ];
-          console.log(allValues);
-          setSensorStats(dat);
+          setMonthStats(dat);
+          const d = [
+            {
+              id: 'Reading Value',
+              color: "hsl(151, 70%, 50%)",
+              data: object["date_mean"].map((item) => ({
+                "x": item.readingDate ,
+                "y": item.readingValue,
+              })),
+            },
+          ];
+          setDailyStats(d);
+
+          const w = [
+            {
+              id: 'Reading Value',
+              color: "hsl(151, 70%, 50%)",
+              data: object["weekday_mean"].map((item) => ({
+                "x": item.weekday ,
+                "y": item.readingValue,
+              })),
+            },
+          ];
+          setWeekdayStats(w);
           setLoading(false);
-          console.log(sensorStats);
         } else {
           console.error('Failed to fetch data');
           setLoading(false);
@@ -74,10 +99,22 @@ function SensorStats() {
           Filter
         </LoadingButton>
         <Button>
-            {sensorStats.range != null? 'View' : 'No Data'}
+            {monthStats.length != null? 'View' : 'No Data'}
         </Button>
-        <div style={{ height: '100vh', margin: '4rem' }}>
-        {sensorStats.length > 0 && <MyResponsiveLine data ={sensorStats} />}
+        <div style={{ height: '40vh', margin: '1rem' }}>
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel>Monthly Mean</InputLabel>
+        </div>
+        {monthStats.length > 0 && <MyResponsiveLine data ={monthStats} xAxisLabel="Month" yAxisLabel="readingValue" />}
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel>Daily Mean</InputLabel>
+        </div>
+        {dailyStats.length > 0 && <MyResponsiveLine data ={dailyStats} xAxisLabel="Reading Date" yAxisLabel="readingValue" />}
+        <main style={{ marginTop: '10px' }}></main>
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel>Weekday Mean</InputLabel>
+        </div>
+        {weekdayStats.length > 0 && <MyResponsiveLine data ={weekdayStats} xAxisLabel="Weekday" yAxisLabel="readingValue" />}
         </div>
       </div>
     );
