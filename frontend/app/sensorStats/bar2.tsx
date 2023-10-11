@@ -18,7 +18,9 @@ function BarPlot({ data, xIndex, xTitle }) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: xTitle
+          legend: xTitle,
+          legendPosition: 'left',
+          legendOffset: 10,
         }}
         axisLeft={{
           tickSize: 5,
@@ -26,10 +28,10 @@ function BarPlot({ data, xIndex, xTitle }) {
           tickRotation: 0,
           legend: 'count', 
           legendPosition: 'middle',
-          legendOffset: -40,
+          legendOffset: -50,
         }}
         enableLabel={true}
-        width={2000} 
+        width={1800} 
         height={400}
       />
     </div>

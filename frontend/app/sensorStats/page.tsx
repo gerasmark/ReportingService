@@ -6,10 +6,10 @@ import InputLabel from '@mui/material/InputLabel';
 import AppBar from '../AppBar';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
-import Histogram from './histogram';
-import MyResponsiveLine, {data} from './line';
+import MyResponsiveLine from './line';
 import BarPlot from './bar';
 import Bar2Plot from './bar2';
+import BoxPlot, {data} from './box';
 
 function SensorStats() {
     const [sensorId, setSensorId] = useState('');
@@ -21,6 +21,9 @@ function SensorStats() {
     const [seasonBar, setSeasonBar] = useState([]);
     const [timingBar, setTimingBar] = useState([]);
     const [distribution, setDistribution] = useState([]);
+    const [monthBox, setMonthBox] = useState([]);
+    const [seasonBox, setSeasonBox] = useState([]);
+    const [timingBox, setTimingBox] = useState([]);
 
     const handleFilterSubmit = async (sensorId) => {
         setLoading(true);
@@ -83,6 +86,9 @@ function SensorStats() {
           setSeasonBar(object['season_count'])
           setTimingBar(object['timing_count'])
           setDistribution(object['distribution'])
+          setMonthBox(object['month_box'])
+          setSeasonBox(object['season_box'])
+          setTimingBox(object['timing_box'])
           setLoading(false);
         } else {
           console.error('Failed to fetch data');
@@ -113,7 +119,7 @@ function SensorStats() {
         <Button>
             {monthStats.length != null? 'View' : 'No Data'}
         </Button>
-        <div style={{ height: '40vh', margin: '1rem' }}>
+        <div style={{ height: '40vh', margin: '1rem' }}> 
         <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
         <InputLabel>Monthly Mean</InputLabel>
         </div>
@@ -146,6 +152,11 @@ function SensorStats() {
         <InputLabel> Reading Value Distribution</InputLabel>
         </div>
         {distribution.length > 0 && <Bar2Plot data ={distribution} xIndex="readingValue" xTitle="readingValue" />}
+        <main style={{ marginTop: '80px' }}></main>
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel> Variation in Seasons</InputLabel>
+        </div>
+        {seasonBox.length > 0 && <BoxPlot data ={data}/>}
         </div>
       </div>
     );

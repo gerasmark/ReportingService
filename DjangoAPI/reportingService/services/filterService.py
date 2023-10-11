@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from reportingService.serializers import SensorReadingSerializer
 import pandas as pd
 import json 
+import numpy as np 
 
 def sensorMetricsService(body):
     sensorId = body['sensorId']
@@ -102,6 +103,30 @@ def sensorStatsService(sensorId):
     distribution = readings['readingValue'].value_counts().reset_index()
     distribution.columns = ['readingValue', 'count']
     distribution = distribution.sort_values(by=['readingValue'])
+    season_box1 = readings.groupby('season')['readingValue'].agg([
+    ('min', 'min'),
+    ('max', 'max'),
+    ('q1', lambda x: np.percentile(x, 25)),
+    ('q3', lambda x: np.percentile(x, 75)),
+    ('mean', lambda x: np.mean(x)),
+    ]).reset_index()
+    season_box = convert_to_desired_format(season_box1, 'season')
+    month_box1 = readings.groupby('month')['readingValue'].agg([
+    ('min', 'min'),
+    ('max', 'max'),
+    ('q1', lambda x: np.percentile(x, 25)),
+    ('q3', lambda x: np.percentile(x, 75)),
+    ('mean', lambda x: np.mean(x)),
+    ]).reset_index()
+    month_box = convert_to_desired_format(month_box1,'month')
+    timing_box1 = readings.groupby('timing')['readingValue'].agg([
+    ('min', 'min'),
+    ('max', 'max'),
+    ('q1', lambda x: np.percentile(x, 25)),
+    ('q3', lambda x: np.percentile(x, 75)),
+    ('mean', lambda x: np.mean(x)),
+    ]).reset_index()
+    timing_box = convert_to_desired_format(timing_box1, 'timing')
 
     data_to_send = {
     'month_mean': month_mean.to_dict(orient='records'),
@@ -110,9 +135,11 @@ def sensorStatsService(sensorId):
     'month_count': month_count.to_dict(orient='records'),
     'season_count': season_count.to_dict(orient='records'),
     'timing_count': timing_count.to_dict(orient='records'),
-    'distribution': distribution.to_dict(orient='records')
-
-}
+    'distribution': distribution.to_dict(orient='records'),
+    'month_box': month_box.to_dict(orient='records'),
+    'season_box': season_box.to_dict(orient='records'),
+    'timing_box': timing_box.to_dict(orient='records'),
+    }
     result = json.dumps(data_to_send)
     # result = readings.to_json(orient='records')
     return result
@@ -147,3 +174,59 @@ def hours2timing(x):
     else:
         timing = 'X'
     return timing
+
+def convert_to_desired_format(df_original, column_name):
+    new_data = []
+    for row in df_original.itertuples():
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'min')
+                })
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'q1')
+                })          
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'q1')
+                }) 
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'mean')
+                }) 
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'q3')
+                })  
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'q3')
+                })  
+                new_data.append({
+                    "group": getattr(row, column_name),
+                    "mu": 0,
+                    "sd": 0,
+                    "n": 1,
+                    "value": getattr(row, 'max')
+                })                
+    df_desired = pd.DataFrame(new_data)
+
+    return df_desired

@@ -19,6 +19,7 @@
     "@mui/styles": "^5.14.7",
     "@mui/x-date-pickers": "^5.0.0-alpha.1",
     "@nivo/bar": "^0.83.0",
+    "@nivo/boxplot": "^0.83.0",
     "@nivo/line": "^0.83.0",
     "@types/node": "20.5.9",
     "@types/plotly.js": "^2.12.27",
