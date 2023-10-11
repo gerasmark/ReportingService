@@ -156,7 +156,15 @@ function SensorStats() {
         <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
         <InputLabel> Variation in Seasons</InputLabel>
         </div>
-        {seasonBox.length > 0 && <BoxPlot data ={data}/>}
+        {seasonBox.length > 0 && <BoxPlot data ={seasonBox} xLabel='Season' />}
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel> Variation in Months</InputLabel>
+        </div>
+        {monthBox.length > 0 && <BoxPlot data ={monthBox} xLabel='Month' />}
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel> Variation in Timing</InputLabel>
+        </div>
+        {timingBox.length > 0 && <BoxPlot data ={timingBox} xLabel='Timing' />}
         </div>
       </div>
     );

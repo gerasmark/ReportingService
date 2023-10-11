@@ -53,7 +53,7 @@ export const data =
 ]
 
 
-function BoxPlot({ data }) {
+function BoxPlot({ data, xLabel}) {
   return (
     <div style={{ height: '300px', width: '600px' }}>
       <ResponsiveBoxPlot
@@ -64,7 +64,7 @@ function BoxPlot({ data }) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: 'Groups',
+          legend: xLabel,
           legendPosition: 'middle',
         }}
         axisLeft={{
@@ -74,6 +74,7 @@ function BoxPlot({ data }) {
           tickRotation: 0,
           legend: 'Values',
           legendPosition: 'middle',
+          legendOffset: -40,
         }}
         width={1800} 
         height={400}
