@@ -14,9 +14,6 @@ export const data=
   ]
 
 const MyResponsiveLine = ({ data, xAxisLabel, yAxisLabel }) => {
-    // if (data) {
-    //     return <p>No data available.</p>;
-    //   }
       return (
     <ResponsiveLine
         data={data}

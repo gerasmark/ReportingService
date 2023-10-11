@@ -8,6 +8,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Button from '@mui/material/Button';
 import Histogram from './histogram';
 import MyResponsiveLine, {data} from './line';
+import BarPlot from './bar';
 
 function SensorStats() {
     const [sensorId, setSensorId] = useState('');
@@ -15,6 +16,11 @@ function SensorStats() {
     const [dailyStats, setDailyStats] = useState([]);
     const [weekdayStats, setWeekdayStats] = useState([]);
     const [loading, setLoading] = React.useState(false);
+    const [monthBar, setMonthbar] = useState([]);
+    const [seasonBar, setSeasonBar] = useState([]);
+    const [timingBar, setTimingBar] = useState([]);
+    const [distribution, setDistribution] = useState([]);
+
     const handleFilterSubmit = async (sensorId) => {
         setLoading(true);
         const response = await fetch(`http://localhost:8000/sensorStats/${sensorId}/`, {
@@ -71,6 +77,8 @@ function SensorStats() {
             },
           ];
           setWeekdayStats(w);
+
+          setMonthbar(object['month_count'])
           setLoading(false);
         } else {
           console.error('Failed to fetch data');
@@ -115,6 +123,10 @@ function SensorStats() {
         <InputLabel>Weekday Mean</InputLabel>
         </div>
         {weekdayStats.length > 0 && <MyResponsiveLine data ={weekdayStats} xAxisLabel="Weekday" yAxisLabel="readingValue" />}
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel>Monthly Distribution</InputLabel>
+        </div>
+        {monthBar.length > 0 && <BarPlot data ={monthBar} xIndex="readingValue" xTitle="Month" />}
         </div>
       </div>
     );
