@@ -117,7 +117,7 @@ function SensorStats() {
           Filter
         </LoadingButton>
         <Button>
-            {monthStats.length != null? 'View' : 'No Data'}
+            {monthStats.length > 0? 'View' : 'No Data'}
         </Button>
         <div style={{ height: '40vh', margin: '1rem' }}> 
         <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
