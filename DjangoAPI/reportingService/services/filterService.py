@@ -94,12 +94,14 @@ def sensorStatsService(sensorId):
     weekday_mean['weekday']= weekday_mean['weekday'].astype(str)
     month_count = readings["month"].value_counts().reset_index()
     month_count.columns = ['readingValue', 'count']
+    month_count = month_count.sort_values(by=['readingValue'])
     season_count = readings["season"].value_counts().reset_index()
     season_count.columns = ['readingValue', 'count']
     timing_count = readings["timing"].value_counts().reset_index()
     timing_count.columns = ['readingValue', 'count']
     distribution = readings['readingValue'].value_counts().reset_index()
     distribution.columns = ['readingValue', 'count']
+    distribution = distribution.sort_values(by=['readingValue'])
 
     data_to_send = {
     'month_mean': month_mean.to_dict(orient='records'),

@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Histogram from './histogram';
 import MyResponsiveLine, {data} from './line';
 import BarPlot from './bar';
+import Bar2Plot from './bar2';
 
 function SensorStats() {
     const [sensorId, setSensorId] = useState('');
@@ -79,6 +80,9 @@ function SensorStats() {
           setWeekdayStats(w);
 
           setMonthbar(object['month_count'])
+          setSeasonBar(object['season_count'])
+          setTimingBar(object['timing_count'])
+          setDistribution(object['distribution'])
           setLoading(false);
         } else {
           console.error('Failed to fetch data');
@@ -124,9 +128,24 @@ function SensorStats() {
         </div>
         {weekdayStats.length > 0 && <MyResponsiveLine data ={weekdayStats} xAxisLabel="Weekday" yAxisLabel="readingValue" />}
         <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel>Season Distribution</InputLabel>
+        </div>
+        {seasonBar.length > 0 && <BarPlot data ={seasonBar} xIndex="readingValue" xTitle="Season" />}
+        <main style={{ marginTop: '80px' }}></main>
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
         <InputLabel>Monthly Distribution</InputLabel>
         </div>
         {monthBar.length > 0 && <BarPlot data ={monthBar} xIndex="readingValue" xTitle="Month" />}
+        <main style={{ marginTop: '80px' }}></main>
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel>Timing Distribution</InputLabel>
+        </div>
+        {timingBar.length > 0 && <BarPlot data ={timingBar} xIndex="readingValue" xTitle="Timing" />}
+        <main style={{ marginTop: '80px' }}></main>
+        <div style={{  textAlign: 'center', marginBottom: '20px', padding: '20px', borderRadius: '10px', background: '#f0f0f0', width: '100%' }}>
+        <InputLabel> Reading Value Distribution</InputLabel>
+        </div>
+        {distribution.length > 0 && <Bar2Plot data ={distribution} xIndex="readingValue" xTitle="readingValue" />}
         </div>
       </div>
     );
