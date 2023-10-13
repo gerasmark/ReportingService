@@ -21,7 +21,7 @@ def sensorReadings(request):
             
     elif request.method == 'GET':
         try:
-            result = sensorReadingServiceGet(body)
+            result = sensorReadingServiceGet()
             return JsonResponse(result, status=200, safe=False)
         except Exception as e:
             return JsonResponse({'error_message': str(e)}, status=400, safe=False)

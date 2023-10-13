@@ -55,7 +55,7 @@ def sensorReadingService(body):
     result = serializer.data
     return result
 
-def sensorReadingServiceGet(body):
+def sensorReadingServiceGet():
     sensorReadings = SensorReading.objects.all()
     sensorReadings = sensorReadings.order_by('-Id')
     serializer = SensorReadingSerializer(sensorReadings, many=True)

@@ -65,6 +65,7 @@ class testViews(TestCase):
             "type": "humidity",
             "location": "Marousi",
             "year": "2015-01-01",
+            "pageNumber": "1"
         }
         response = self.client.post('/sensorReadings/', json.dumps(data), content_type = 'json')
         self.assertEqual(response.status_code, 400)
